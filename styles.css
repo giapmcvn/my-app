@@ -106,7 +106,7 @@ nav a:hover::after { width: 100%; }
 .hero p {
   margin: 0 0 22px;
   color: var(--muted);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.7;
 }
 
@@ -162,6 +162,7 @@ nav a:hover::after { width: 100%; }
 .section p.lead {
   margin: 0 0 22px;
   color: var(--muted);
+  font-size: 19px;
 }
 
 .grid {
@@ -189,7 +190,7 @@ nav a:hover::after { width: 100%; }
   margin: 0;
   color: var(--muted);
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .pricing {
@@ -215,7 +216,7 @@ nav a:hover::after { width: 100%; }
   padding: 0;
   list-style: none;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.6;
 }
 
