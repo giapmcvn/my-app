@@ -15,7 +15,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--ink);
   background:
     radial-gradient(900px 420px at 12% -10%, rgba(227, 162, 75, 0.22), transparent 60%),
@@ -97,7 +97,7 @@ nav a:hover::after { width: 100%; }
 
 .hero h1 {
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: clamp(38px, 5vw, 66px);
+  font-size: clamp(40px, 5vw, 70px);
   line-height: 1.05;
   margin: 0 0 18px;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
@@ -155,7 +155,7 @@ nav a:hover::after { width: 100%; }
 
 .section h2 {
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 30px;
+  font-size: 32px;
   margin: 0 0 16px;
 }
 
@@ -181,7 +181,7 @@ nav a:hover::after { width: 100%; }
 
 .card h3 {
   margin: 0 0 8px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
 }
 
