@@ -18,8 +18,8 @@
         <a href="lien-he.html">Liên hệ</a>
       </nav>
       <div class="auth-actions">
-        <button type="button" onclick="openAuth('login')">??ng nh?p</button>
-        <button type="button" onclick="openAuth('register')">??ng k?</button>
+        <button type="button" onclick="openAuth('login')">Đăng nhập</button>
+        <button type="button" onclick="openAuth('register')">Đăng ký</button>
       </div>
     </header>
 
@@ -95,19 +95,19 @@
     <div class="auth-modal" id="authModal" aria-hidden="true">
       <div class="auth-backdrop" onclick="closeAuth()"></div>
       <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <button class="auth-close" type="button" onclick="closeAuth()">?</button>
-        <h3 id="authTitle">??ng nh?p</h3>
-        <p class="auth-sub">Vui l?ng nh?p email v? m?t kh?u c?a b?n.</p>
+        <button class="auth-close" type="button" onclick="closeAuth()">×</button>
+        <h3 id="authTitle">Đăng nhập</h3>
+        <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
         <form onsubmit="return submitAuth(event)">
           <label class="auth-label" for="auth-email">Email</label>
           <input id="auth-email" type="email" required>
-          <label class="auth-label" for="auth-password">M?t kh?u</label>
+          <label class="auth-label" for="auth-password">Mật khẩu</label>
           <input id="auth-password" type="password" required>
-          <button class="auth-submit" type="submit" id="authSubmit">??ng nh?p</button>
+          <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
         <div class="auth-switch">
-          <button type="button" onclick="setAuthMode('login')">??ng nh?p</button>
-          <button type="button" onclick="setAuthMode('register')">??ng k?</button>
+          <button type="button" onclick="setAuthMode('login')">Đăng nhập</button>
+          <button type="button" onclick="setAuthMode('register')">Đăng ký</button>
         </div>
       </div>
     </div>
@@ -144,8 +144,8 @@
     currentMode = mode === "register" ? "register" : "login";
     const title = document.getElementById("authTitle");
     const submit = document.getElementById("authSubmit");
-    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
-    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
+    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
   }
 
   window.openAuth = function(mode) {
@@ -171,11 +171,11 @@
     const password = document.getElementById("auth-password")?.value || "";
     if (currentMode === "register") {
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => alert("??ng k? th?nh c?ng"))
+        .then(() => alert("Đăng ký thành công"))
         .catch(err => alert(err.message));
     } else {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => alert("??ng nh?p th?nh c?ng"))
+        .then(() => alert("Đăng nhập thành công"))
         .catch(err => alert(err.message));
     }
     return false;
