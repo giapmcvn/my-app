@@ -17,6 +17,10 @@
         <a href="tai-nguyen.html">Tài nguyên</a>
         <a href="lien-he.html">Liên hệ</a>
       </nav>
+      <div class="auth-actions">
+        <button type="button" onclick="openAuth('login')">??ng nh?p</button>
+        <button type="button" onclick="openAuth('register')">??ng k?</button>
+      </div>
     </header>
 
     <section class="hero">
@@ -99,11 +103,96 @@
       <p class="notice">Nếu cần thêm tài liệu, hãy để lại yêu cầu ở trang Liên hệ.</p>
     </section>
 
+
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+      <div class="auth-backdrop" onclick="closeAuth()"></div>
+      <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <button class="auth-close" type="button" onclick="closeAuth()">?</button>
+        <h3 id="authTitle">??ng nh?p</h3>
+        <p class="auth-sub">Vui l?ng nh?p email v? m?t kh?u c?a b?n.</p>
+        <form onsubmit="return submitAuth(event)">
+          <label class="auth-label" for="auth-email">Email</label>
+          <input id="auth-email" type="email" required>
+          <label class="auth-label" for="auth-password">M?t kh?u</label>
+          <input id="auth-password" type="password" required>
+          <button class="auth-submit" type="submit" id="authSubmit">??ng nh?p</button>
+        </form>
+        <div class="auth-switch">
+          <button type="button" onclick="setAuthMode('login')">??ng nh?p</button>
+          <button type="button" onclick="setAuthMode('register')">??ng k?</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <span>© 2026 VCG App Store</span>
       <span>http://VCG.com</span>
     </footer>
   </div>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUCPld_CUciLvnPIbf3UsB_5REfxTHEwA",
+    authDomain: "wed-vcg.firebaseapp.com",
+    projectId: "wed-vcg",
+    storageBucket: "wed-vcg.firebasestorage.app",
+    messagingSenderId: "547897720026",
+    appId: "1:547897720026:web:bcac8b3953d1ead6e679e3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  let currentMode = "login";
+
+  window.setAuthMode = function(mode) {
+    currentMode = mode === "register" ? "register" : "login";
+    const title = document.getElementById("authTitle");
+    const submit = document.getElementById("authSubmit");
+    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+  }
+
+  window.openAuth = function(mode) {
+    const modal = document.getElementById("authModal");
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    window.setAuthMode(mode || "login");
+    const email = document.getElementById("auth-email");
+    if (email) email.focus();
+  }
+
+  window.closeAuth = function() {
+    const modal = document.getElementById("authModal");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  window.submitAuth = function(event) {
+    event.preventDefault();
+    const email = document.getElementById("auth-email")?.value || "";
+    const password = document.getElementById("auth-password")?.value || "";
+    if (currentMode === "register") {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => alert("??ng k? th?nh c?ng"))
+        .catch(err => alert(err.message));
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => alert("??ng nh?p th?nh c?ng"))
+        .catch(err => alert(err.message));
+    }
+    return false;
+  }
+  </script>
 </body>
 </html>
 

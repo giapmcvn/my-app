@@ -67,6 +67,28 @@ nav {
   letter-spacing: 0.18em;
 }
 
+.auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-actions button {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(227, 162, 75, 0.6);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.auth-actions button:last-child {
+  background: linear-gradient(90deg, rgba(227, 162, 75, 0.2), rgba(61, 212, 179, 0.18));
+  border-color: rgba(61, 212, 179, 0.6);
+}
+
 nav a {
   color: var(--ink);
   text-decoration: none;
@@ -242,6 +264,104 @@ footer {
   justify-content: space-between;
   color: var(--muted);
   font-size: 14px;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.auth-modal.is-open { display: flex; }
+
+.auth-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 5, 8, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.auth-panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.auth-panel h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.auth-sub {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.auth-label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.auth-panel input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(10, 12, 18, 0.8);
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg, rgba(227, 162, 75, 0.8), rgba(61, 212, 179, 0.8));
+  color: #0b0f16;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-switch {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.auth-switch button {
+  flex: 1;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.auth-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 22px;
+  cursor: pointer;
 }
 
 @media (max-width: 900px) {
