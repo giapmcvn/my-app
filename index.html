@@ -126,6 +126,40 @@
       <span>http://VCG.com</span>
     </footer>
   </div>
+  <script type="module"> 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword 
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUCPld_CUciLvnPIbf3UsB_5REfxTHEwA",
+    authDomain: "wed-vcg.firebaseapp.com",
+    projectId: "wed-vcg",
+    storageBucket: "wed-vcg.firebasestorage.app",
+    messagingSenderId: "547897720026",
+    appId: "1:547897720026:web:bcac8b3953d1ead6e679e3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Đăng ký
+  window.register = function(email, password) {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Đăng ký thành công"))
+      .catch(err => alert(err.message));
+  }
+
+  // Đăng nhập
+  window.login = function(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Đăng nhập thành công"))
+      .catch(err => alert(err.message));
+  }
+  </script>
 </body>
 </html>
 
