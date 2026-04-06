@@ -49,6 +49,19 @@
     </section>
 
     <section class="section">
+      <h2>??ng k? / ??ng nh?p</h2>
+      <div class="card">
+        <form>
+          <input id="email">
+          <input id="password">
+          <button onclick="dangky()">??ng k?</button>
+          <button onclick="dangnhap()">??ng nh?p</button>
+        </form>
+      </div>
+    </section>
+
+
+    <section class="section">
       <h2>App nổi bật</h2>
       <p class="lead">Danh sách ứng dụng được bán chạy và cập nhật đều trong tuần.</p>
       <div class="grid">
@@ -158,6 +171,18 @@
     signInWithEmailAndPassword(auth, email, password)
       .then(() => alert("Đăng nhập thành công"))
       .catch(err => alert(err.message));
+  }
+
+  window.dangky = function() {
+    const email = document.getElementById("email")?.value || "";
+    const password = document.getElementById("password")?.value || "";
+    window.register(email, password);
+  }
+
+  window.dangnhap = function() {
+    const email = document.getElementById("email")?.value || "";
+    const password = document.getElementById("password")?.value || "";
+    window.login(email, password);
   }
   </script>
 </body>
