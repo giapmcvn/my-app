@@ -418,6 +418,30 @@ footer {
   cursor: pointer;
 }
 
+.auth-divider {
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.auth-social {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.auth-social-btn {
+  border: 1px solid var(--line);
+  background: rgba(10, 12, 18, 0.7);
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
   .page { padding: 18px 18px 70px; }
   header {

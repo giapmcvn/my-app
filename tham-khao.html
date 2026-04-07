@@ -124,6 +124,11 @@
           <input id="auth-password" type="password" required>
           <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
+        <div class="auth-divider">Ho?c ??ng nh?p b?ng</div>
+        <div class="auth-social">
+          <button type="button" class="auth-social-btn" onclick="oauthLogin('google')">Google</button>
+          <button type="button" class="auth-social-btn" onclick="oauthLogin('apple')">Apple</button>
+        </div>
         <div class="auth-switch">
           <button type="button" onclick="setAuthMode('login')">Đăng nhập</button>
           <button type="button" onclick="setAuthMode('register')">Đăng ký</button>
@@ -143,6 +148,9 @@
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    OAuthProvider,
     onAuthStateChanged,
     signOut
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -173,7 +181,21 @@
     if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
   }
 
-  window.openAuth = function(mode) {
+    window.oauthLogin = function(providerName) {
+    let provider;
+    if (providerName === "google") {
+      provider = new GoogleAuthProvider();
+    } else if (providerName === "apple") {
+      provider = new OAuthProvider('apple.com');
+    } else {
+      return;
+    }
+    signInWithPopup(auth, provider)
+      .then(() => alert("??ng nh?p th?nh c?ng"))
+      .catch(err => alert(err.message));
+  }
+
+window.openAuth = function(mode) {
     const modal = document.getElementById("authModal");
     if (!modal) return;
     modal.classList.add("is-open");
@@ -249,6 +271,9 @@ window.toggleMenu = function() {
         .catch(err => alert(err.message));
     } else {
       signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    OAuthProvider,
     onAuthStateChanged,
     signOut(auth, email, password)
         .then(() => alert("Đăng nhập thành công"))
