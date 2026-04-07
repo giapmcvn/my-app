@@ -434,12 +434,29 @@ footer {
 }
 
 .auth-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   border: 1px solid var(--line);
   background: rgba(10, 12, 18, 0.7);
   color: var(--ink);
   padding: 10px 12px;
   border-radius: 12px;
   cursor: pointer;
+}
+
+.auth-social-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-social-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 @media (max-width: 900px) {

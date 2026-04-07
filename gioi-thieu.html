@@ -134,9 +134,28 @@
         </form>
         <div class="auth-divider">Ho?c ??ng nh?p b?ng</div>
         <div class="auth-social">
-          <button type="button" class="auth-social-btn" onclick="oauthLogin('google')">Google</button>
-          <button type="button" class="auth-social-btn" onclick="oauthLogin('apple')">Apple</button>
+          <button type="button" class="auth-social-btn" onclick="oauthLogin('google')">
+            <span class="auth-social-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.3 29.2 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.4 1 7.3 2.7l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
+                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c2.8 0 5.4 1 7.3 2.7l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.1 6.3 14.7z"/>
+                <path fill="#4CAF50" d="M24 44c5.1 0 9.8-2 13.3-5.3l-6.1-5c-1.8 1.4-4.1 2.3-7.2 2.3-5.2 0-9.6-3.3-11.1-7.9l-6.5 5c3.3 6.5 10 10.9 17.6 10.9z"/>
+                <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.7 2.1-2 3.9-3.8 5.2l6.1 5c-1.2 1.1 3.4-2.5 4.9-7.2 1-2.7 1.5-5.6 1.5-8.9 0-1.3-.1-2.7-.4-3.9z"/>
+              </svg>
+            </span>
+            <span>Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" onclick="oauthLogin('apple')">
+            <span class="auth-social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M16.6 12.6c0 2.7 2.4 3.6 2.4 3.6s-1.9 5.5-4.6 5.5c-1.2 0-2.2-.8-3.5-.8-1.4 0-2.4.8-3.6.8-2.5 0-4.5-5.1-4.5-8.2 0-3.3 2.1-5 4-5 1.3 0 2.5.9 3.3.9.8 0 2.1-.9 3.7-.9.6 0 2.6.1 3.9 2-.1.1-2.3 1.3-2.3 4.1z"/>
+                <path fill="currentColor" d="M13.9 4.2c.6-.8 1-1.9.9-3-.9.1-2.1.6-2.8 1.4-.6.7-1 1.9-.9 2.9 1 .1 2-.5 2.8-1.3z"/>
+              </svg>
+            </span>
+            <span>Apple</span>
+          </button>
         </div>
+
         <div class="auth-switch">
           <button type="button" onclick="setAuthMode('login')">Đăng nhập</button>
           <button type="button" onclick="setAuthMode('register')">Đăng ký</button>
