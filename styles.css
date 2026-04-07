@@ -44,9 +44,9 @@ body::before {
 }
 
 header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   padding: 8px 0 26px;
 }
@@ -65,12 +65,14 @@ nav {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
+  justify-self: center;
 }
 
 .auth-actions {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-self: end;
 }
 
 .auth-actions button {
@@ -92,11 +94,11 @@ nav {
 
 .auth-user {
   display: none;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
+  padding: 0;
+  border: none;
   font-size: 12px;
   letter-spacing: 0.04em;
+  color: var(--ink);
   max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
