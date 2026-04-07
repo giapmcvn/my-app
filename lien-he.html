@@ -18,10 +18,15 @@
         <a href="lien-he.html">Liên hệ</a>
       </nav>
       <div class="auth-actions">
-        <button type="button" id="authLogin" onclick="openAuth('login')">??ng nh?p</button>
-        <button type="button" id="authRegister" onclick="openAuth('register')">??ng k?</button>
-        <span class="auth-user" id="authUser"></span>
-        <button type="button" id="authLogout" onclick="logout()">??ng xu?t</button>
+        <button type="button" id="authLogin" onclick="openAuth('login')">Đăng nhập</button>
+        <button type="button" id="authRegister" onclick="openAuth('register')">Đăng ký</button>
+        <div class="auth-menu" id="authMenu">
+          <button type="button" class="auth-avatar" id="authAvatar" onclick="toggleMenu()" aria-expanded="false">U</button>
+          <div class="auth-dropdown" id="authDropdown">
+            <button type="button" onclick="openAccount()">Tài khoản / Cài đặt</button>
+            <button type="button" onclick="logout()">Đăng xuất</button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -176,14 +181,19 @@
     function updateAuthUI(user) {
     const loginBtn = document.getElementById("authLogin");
     const registerBtn = document.getElementById("authRegister");
-    const userEl = document.getElementById("authUser");
-    const logoutBtn = document.getElementById("authLogout");
+    const userEl = document.getElementById("authAvatar");
+    const logoutBtn = document.getElementById("authMenu");
     if (user) {
       if (loginBtn) loginBtn.style.display = "none";
       if (registerBtn) registerBtn.style.display = "none";
       if (userEl) {
-        userEl.textContent = user.email || "T?i kho?n";
+              if (userEl) {
+        const email = user.email || "";
+        const initial = email ? email.trim().charAt(0).toUpperCase() : "U";
+        userEl.textContent = initial;
+        userEl.title = email;
         userEl.style.display = "inline-flex";
+      }
       }
       if (logoutBtn) logoutBtn.style.display = "inline-flex";
     } else {
@@ -196,7 +206,28 @@
 
   onAuthStateChanged(auth, updateAuthUI);
 
-window.submitAuth = function(event) {
+window.toggleMenu = function() {
+    const menu = document.getElementById("authMenu");
+    const btn = document.getElementById("authAvatar");
+    if (!menu || !btn) return;
+    const isOpen = menu.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  window.openAccount = function() {
+    alert("T?nh n?ng t?i kho?n/c?i ??t ?ang ???c c?p nh?t.");
+  }
+
+  document.addEventListener("click", (e) => {
+    const menu = document.getElementById("authMenu");
+    const btn = document.getElementById("authAvatar");
+    if (!menu || !btn) return;
+    if (menu.contains(e.target)) return;
+    menu.classList.remove("is-open");
+    btn.setAttribute("aria-expanded", "false");
+  });
+
+  window.submitAuth = function(event) {
     event.preventDefault();
     const email = document.getElementById("auth-email")?.value || "";
     const password = document.getElementById("auth-password")?.value || "";
