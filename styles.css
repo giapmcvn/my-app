@@ -17,6 +17,7 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   color: var(--ink);
+  overflow-x: hidden;
   background:
     radial-gradient(900px 420px at 12% -10%, rgba(227, 162, 75, 0.22), transparent 60%),
     radial-gradient(700px 350px at 88% 12%, rgba(61, 212, 179, 0.18), transparent 60%),
@@ -418,9 +419,25 @@ footer {
 }
 
 @media (max-width: 900px) {
+  .page { padding: 18px 18px 70px; }
+  header {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 12px;
+  }
+  nav { display: none; }
+  .auth-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
   .hero { grid-template-columns: 1fr; }
+  .hero-card { width: 100%; }
   .grid { grid-template-columns: 1fr; }
   .pricing { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }
-  nav { display: none; }
+  footer { flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 520px) {
+  .page { padding: 16px 14px 60px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 40px); }
+  .badge-row { gap: 6px; }
+  .auth-actions button { padding: 8px 10px; font-size: 11px; }
 }
