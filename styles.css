@@ -36,9 +36,9 @@ body::before {
 }
 
 .page {
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 34px 20px 90px;
+  max-width: 100%;
+  margin: 0;
+  padding: 24px 32px 90px;
   position: relative;
   z-index: 1;
 }
@@ -65,7 +65,7 @@ nav {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  justify-self: center;
+  justify-self: start;
 }
 
 .auth-actions {
