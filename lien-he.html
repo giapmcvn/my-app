@@ -18,8 +18,10 @@
         <a href="lien-he.html">Liên hệ</a>
       </nav>
       <div class="auth-actions">
-        <button type="button" onclick="openAuth('login')">Đăng nhập</button>
-        <button type="button" onclick="openAuth('register')">Đăng ký</button>
+        <button type="button" id="authLogin" onclick="openAuth('login')">??ng nh?p</button>
+        <button type="button" id="authRegister" onclick="openAuth('register')">??ng k?</button>
+        <span class="auth-user" id="authUser"></span>
+        <button type="button" id="authLogout" onclick="logout()">??ng xu?t</button>
       </div>
     </header>
 
@@ -123,7 +125,9 @@
   import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -139,6 +143,10 @@
   const auth = getAuth(app);
 
   let currentMode = "login";
+
+  window.logout = function() {
+    signOut(auth).catch(err => alert(err.message));
+  }
 
   window.setAuthMode = function(mode) {
     currentMode = mode === "register" ? "register" : "login";
@@ -165,7 +173,30 @@
     modal.setAttribute("aria-hidden", "true");
   }
 
-  window.submitAuth = function(event) {
+    function updateAuthUI(user) {
+    const loginBtn = document.getElementById("authLogin");
+    const registerBtn = document.getElementById("authRegister");
+    const userEl = document.getElementById("authUser");
+    const logoutBtn = document.getElementById("authLogout");
+    if (user) {
+      if (loginBtn) loginBtn.style.display = "none";
+      if (registerBtn) registerBtn.style.display = "none";
+      if (userEl) {
+        userEl.textContent = user.email || "T?i kho?n";
+        userEl.style.display = "inline-flex";
+      }
+      if (logoutBtn) logoutBtn.style.display = "inline-flex";
+    } else {
+      if (loginBtn) loginBtn.style.display = "inline-flex";
+      if (registerBtn) registerBtn.style.display = "inline-flex";
+      if (userEl) userEl.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "none";
+    }
+  }
+
+  onAuthStateChanged(auth, updateAuthUI);
+
+window.submitAuth = function(event) {
     event.preventDefault();
     const email = document.getElementById("auth-email")?.value || "";
     const password = document.getElementById("auth-password")?.value || "";
@@ -174,7 +205,9 @@
         .then(() => alert("Đăng ký thành công"))
         .catch(err => alert(err.message));
     } else {
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut(auth, email, password)
         .then(() => alert("Đăng nhập thành công"))
         .catch(err => alert(err.message));
     }

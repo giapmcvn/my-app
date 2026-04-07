@@ -70,6 +70,7 @@ nav {
 .auth-actions {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .auth-actions button {
@@ -87,6 +88,23 @@ nav {
 .auth-actions button:last-child {
   background: linear-gradient(90deg, rgba(227, 162, 75, 0.2), rgba(61, 212, 179, 0.18));
   border-color: rgba(61, 212, 179, 0.6);
+}
+
+.auth-user {
+  display: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#authLogout {
+  display: none;
 }
 
 nav a {
