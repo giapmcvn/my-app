@@ -181,7 +181,6 @@
       <span>http://VCG.com</span>
     </footer>
   </div>
-
   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
@@ -217,16 +216,16 @@
     currentMode = mode === "register" ? "register" : "login";
     const title = document.getElementById("authTitle");
     const submit = document.getElementById("authSubmit");
-    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
-    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
+    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
   }
 
-    window.oauthLogin = function(providerName) {
+  window.oauthLogin = function(providerName) {
     let provider;
     if (providerName === "google") {
       provider = new GoogleAuthProvider();
     } else if (providerName === "apple") {
-      provider = new OAuthProvider('apple.com');
+      provider = new OAuthProvider("apple.com");
     } else {
       return;
     }
@@ -235,7 +234,7 @@
       .catch(err => alert(err.message));
   }
 
-window.openAuth = function(mode) {
+  window.openAuth = function(mode) {
     const modal = document.getElementById("authModal");
     if (!modal) return;
     modal.classList.add("is-open");
@@ -252,7 +251,7 @@ window.openAuth = function(mode) {
     modal.setAttribute("aria-hidden", "true");
   }
 
-    function updateAuthUI(user) {
+  function updateAuthUI(user) {
     const loginBtn = document.getElementById("authLogin");
     const registerBtn = document.getElementById("authRegister");
     const userEl = document.getElementById("authAvatar");
@@ -261,13 +260,11 @@ window.openAuth = function(mode) {
       if (loginBtn) loginBtn.style.display = "none";
       if (registerBtn) registerBtn.style.display = "none";
       if (userEl) {
-              if (userEl) {
         const email = user.email || "";
         const initial = email ? email.trim().charAt(0).toUpperCase() : "U";
         userEl.textContent = initial;
         userEl.title = email;
         userEl.style.display = "inline-flex";
-      }
       }
       if (logoutBtn) logoutBtn.style.display = "inline-flex";
     } else {
@@ -280,7 +277,7 @@ window.openAuth = function(mode) {
 
   onAuthStateChanged(auth, updateAuthUI);
 
-window.toggleMenu = function() {
+  window.toggleMenu = function() {
     const menu = document.getElementById("authMenu");
     const btn = document.getElementById("authAvatar");
     if (!menu || !btn) return;
@@ -307,16 +304,11 @@ window.toggleMenu = function() {
     const password = document.getElementById("auth-password")?.value || "";
     if (currentMode === "register") {
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => alert("Đăng ký thành công"))
+        .then(() => alert("??ng k? th?nh c?ng"))
         .catch(err => alert(err.message));
     } else {
-      signInWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    OAuthProvider,
-    onAuthStateChanged,
-    signOut(auth, email, password)
-        .then(() => alert("Đăng nhập thành công"))
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => alert("??ng nh?p th?nh c?ng"))
         .catch(err => alert(err.message));
     }
     return false;
