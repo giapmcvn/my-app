@@ -1,4 +1,4 @@
-<!doctype html>
+﻿﻿﻿<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
@@ -105,13 +105,27 @@
         <button class="auth-close" type="button" onclick="closeAuth()">×</button>
         <h3 id="authTitle">Đăng nhập</h3>
         <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
-        <form onsubmit="return submitAuth(event)">
+                <form onsubmit="return submitAuth(event)">
+          <label class="auth-label" for="name">Hỏ tên</label>
+          <input id="name" placeholder="Hỏ tên">
+          <label class="auth-label" for="birth">Ngày sinh</label>
+          <input id="birth" type="date">
+          <label class="auth-label" for="gender">Giới tính</label>
+          <select id="gender">
+            <option>Nam</option>
+            <option>Nữ</option>
+          </select>
+          <label class="auth-label" for="nickname">Gọi tôi là</label>
+          <input id="nickname" placeholder="Gọi tôi là...">
           <label class="auth-label" for="auth-email">Email</label>
           <input id="auth-email" type="email" required>
           <label class="auth-label" for="auth-password">Mật khẩu</label>
           <input id="auth-password" type="password" required>
+          <label class="auth-label" for="auth-repassword">Nhập lại mật khẩu</label>
+          <input id="auth-repassword" type="password">
           <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
+
         <div class="auth-divider">Hoặc đăng nhập bằng</div>
         <div class="auth-social">
           <button type="button" class="auth-social-btn" onclick="oauthLogin('google')">
@@ -158,7 +172,8 @@
     GoogleAuthProvider,
     OAuthProvider,
     onAuthStateChanged,
-    signOut
+    signOut,
+    updateProfile
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -183,8 +198,8 @@
     currentMode = mode === "register" ? "register" : "login";
     const title = document.getElementById("authTitle");
     const submit = document.getElementById("authSubmit");
-    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
-    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
+    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
   }
 
   window.oauthLogin = function(providerName) {
@@ -197,7 +212,7 @@
       return;
     }
     signInWithPopup(auth, provider)
-      .then(() => alert("??ng nh?p th?nh c?ng"))
+      .then(() => alert("Đăng nhập th?nh c?ng"))
       .catch(err => alert(err.message));
   }
 
@@ -265,18 +280,49 @@
     btn.setAttribute("aria-expanded", "false");
   });
 
-  window.submitAuth = function(event) {
-    event.preventDefault();
+  function collectProfile() {
+    return {
+      name: document.getElementById("name")?.value || "",
+      birth: document.getElementById("birth")?.value || "",
+      gender: document.getElementById("gender")?.value || "",
+      nickname: document.getElementById("nickname")?.value || ""
+    };
+  }
+
+  window.register = function() {
     const email = document.getElementById("auth-email")?.value || "";
     const password = document.getElementById("auth-password")?.value || "";
+    const repassword = document.getElementById("auth-repassword")?.value || "";
+    if (password !== repassword) {
+      alert("Mật khẩu nh?p l?i kh?ng kh?p");
+      return;
+    }
+    const profile = collectProfile();
+    const displayName = profile.nickname || profile.name || "";
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (cred) => {
+        if (displayName) {
+          await updateProfile(cred.user, { displayName });
+        }
+        alert("Đăng ký th?nh c?ng");
+      })
+      .catch(err => alert(err.message));
+  }
+
+  window.login = function() {
+    const email = document.getElementById("auth-email")?.value || "";
+    const password = document.getElementById("auth-password")?.value || "";
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Đăng nhập th?nh c?ng"))
+      .catch(err => alert(err.message));
+  }
+
+  window.submitAuth = function(event) {
+    event.preventDefault();
     if (currentMode === "register") {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => alert("??ng k? th?nh c?ng"))
-        .catch(err => alert(err.message));
+      window.register();
     } else {
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => alert("??ng nh?p th?nh c?ng"))
-        .catch(err => alert(err.message));
+      window.login();
     }
     return false;
   }
