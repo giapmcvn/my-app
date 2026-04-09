@@ -171,7 +171,7 @@
   let currentMode = "login";
 
   window.logout = function() {
-    signOut(auth).catch(err => alert(err.message));
+    signOut(auth) .catch(err => {\n        if (err.code === "auth/email-already-in-use") {\n          alert("Email đã được đăng ký, hãy đăng nhập!");\n        } else {\n          alert(err.message);\n        }\n      });
   }
 
   window.setAuthMode = function(mode) {
@@ -280,7 +280,7 @@
         });
         alert("Đăng ký th?nh c?ng");
       })
-      .catch(err => alert(err.message));
+       .catch(err => {\n        if (err.code === "auth/email-already-in-use") {\n          alert("Email đã được đăng ký, hãy đăng nhập!");\n        } else {\n          alert(err.message);\n        }\n      });
   }
 
   window.login = async function() {
@@ -312,6 +312,7 @@
   </script>
 </body>
 </html>
+
 
 
 
