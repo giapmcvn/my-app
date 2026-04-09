@@ -132,30 +132,31 @@
     </section>
 
 
+    
     <div class="auth-modal" id="authModal" aria-hidden="true">
       <div class="auth-backdrop" onclick="closeAuth()"></div>
       <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <button class="auth-close" type="button" onclick="closeAuth()">×</button>
+        <button class="auth-close" type="button" onclick="closeAuth()">?</button>
         <h3 id="authTitle">Đăng nhập</h3>
-        <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
+        <p class="auth-sub">Vui l?ng nh?p email v? m?t kh?u c?a b?n.</p>
         <form onsubmit="return submitAuth(event)">
-          <label class="auth-label" for="name">Họ tên</label>
-          <input id="name" placeholder="Họ tên">
-          <label class="auth-label" for="birth">Ngày sinh</label>
+          <label class="auth-label" for="name">H? t?n</label>
+          <input id="name" placeholder="H? t?n">
+          <label class="auth-label" for="birth">Ng?y sinh</label>
           <input id="birth" type="date">
-          <label class="auth-label" for="gender">Giới tính</label>
+          <label class="auth-label" for="gender">Gi?i t?nh</label>
           <select id="gender">
-            <option value="">Chọn giới tính</option>
+            <option value="">Ch?n gi?i t?nh</option>
             <option>Nam</option>
-            <option>Nữ</option>
+            <option>N?</option>
           </select>
-          <label class="auth-label" for="nickname">Gọi tôi là</label>
-          <input id="nickname" placeholder="Gọi tôi là...">
+          <label class="auth-label" for="nickname">G?i t?i l?</label>
+          <input id="nickname" placeholder="G?i t?i l?...">
           <label class="auth-label" for="auth-email">Email</label>
           <input id="auth-email" type="email" required>
-          <label class="auth-label" for="auth-password">Mật khẩu</label>
+          <label class="auth-label" for="auth-password">M?t kh?u</label>
           <input id="auth-password" type="password" required>
-          <label class="auth-label" for="auth-repassword">Nhập lại mật khẩu</label>
+          <label class="auth-label" for="auth-repassword">Nh?p l?i m?t kh?u</label>
           <input id="auth-repassword" type="password">
           <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
@@ -165,13 +166,12 @@
         </div>
       </div>
     </div>
-
     <footer>
       <span>© 2026 VCG App Store</span>
       <span>http://VCG.com</span>
     </footer>
   </div>
-  <script type="module">
+    <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
     getAuth,
@@ -204,7 +204,7 @@
   let currentMode = "login";
 
   window.logout = function() {
-    signOut(auth) .catch(err => {\n        if (err.code === "auth/email-already-in-use") {\n          alert("Email đã được đăng ký, hãy đăng nhập!");\n        } else {\n          alert(err.message);\n        }\n      });
+    signOut(auth).catch(err => alert(err.message));
   }
 
   window.setAuthMode = function(mode) {
@@ -293,7 +293,7 @@
     const password = document.getElementById("auth-password")?.value || "";
     const repassword = document.getElementById("auth-repassword")?.value || "";
     if (password !== repassword) {
-      alert("Mật khẩu nh?p l?i kh?ng kh?p");
+      alert("M?t kh?u nh?p l?i kh?ng kh?p");
       return;
     }
     const profile = collectProfile();
@@ -313,7 +313,13 @@
         });
         alert("Đăng ký th?nh c?ng");
       })
-       .catch(err => {\n        if (err.code === "auth/email-already-in-use") {\n          alert("Email đã được đăng ký, hãy đăng nhập!");\n        } else {\n          alert(err.message);\n        }\n      });
+      .catch(err => {
+        if (err.code === "auth/email-already-in-use") {
+          alert("Email ?? ???c Đăng ký, h?y Đăng nhập!");
+        } else {
+          alert(err.message);
+        }
+      });
   }
 
   window.login = async function() {
@@ -343,8 +349,10 @@
     return false;
   }
   </script>
+
 </body>
 </html>
+
 
 
 
