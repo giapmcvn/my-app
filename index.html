@@ -138,13 +138,14 @@
         <button class="auth-close" type="button" onclick="closeAuth()">×</button>
         <h3 id="authTitle">Đăng nhập</h3>
         <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
-                <form onsubmit="return submitAuth(event)">
-          <label class="auth-label" for="name">Hỏ tên</label>
-          <input id="name" placeholder="Hỏ tên">
+        <form onsubmit="return submitAuth(event)">
+          <label class="auth-label" for="name">Họ tên</label>
+          <input id="name" placeholder="Họ tên">
           <label class="auth-label" for="birth">Ngày sinh</label>
           <input id="birth" type="date">
           <label class="auth-label" for="gender">Giới tính</label>
           <select id="gender">
+            <option value="">Chọn giới tính</option>
             <option>Nam</option>
             <option>Nữ</option>
           </select>
@@ -158,31 +159,6 @@
           <input id="auth-repassword" type="password">
           <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
-
-        <div class="auth-divider">Hoặc đăng nhập bằng</div>
-        <div class="auth-social">
-          <button type="button" class="auth-social-btn" onclick="oauthLogin('google')">
-            <span class="auth-social-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.3 29.2 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.4 1 7.3 2.7l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
-                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c2.8 0 5.4 1 7.3 2.7l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.1 6.3 14.7z"/>
-                <path fill="#4CAF50" d="M24 44c5.1 0 9.8-2 13.3-5.3l-6.1-5c-1.8 1.4-4.1 2.3-7.2 2.3-5.2 0-9.6-3.3-11.1-7.9l-6.5 5c3.3 6.5 10 10.9 17.6 10.9z"/>
-                <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.7 2.1-2 3.9-3.8 5.2l6.1 5c-1.2 1.1 3.4-2.5 4.9-7.2 1-2.7 1.5-5.6 1.5-8.9 0-1.3-.1-2.7-.4-3.9z"/>
-              </svg>
-            </span>
-            <span>Google</span>
-          </button>
-          <button type="button" class="auth-social-btn" onclick="oauthLogin('apple')">
-            <span class="auth-social-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="currentColor" d="M16.6 12.6c0 2.7 2.4 3.6 2.4 3.6s-1.9 5.5-4.6 5.5c-1.2 0-2.2-.8-3.5-.8-1.4 0-2.4.8-3.6.8-2.5 0-4.5-5.1-4.5-8.2 0-3.3 2.1-5 4-5 1.3 0 2.5.9 3.3.9.8 0 2.1-.9 3.7-.9.6 0 2.6.1 3.9 2-.1.1-2.3 1.3-2.3 4.1z"/>
-                <path fill="currentColor" d="M13.9 4.2c.6-.8 1-1.9.9-3-.9.1-2.1.6-2.8 1.4-.6.7-1 1.9-.9 2.9 1 .1 2-.5 2.8-1.3z"/>
-              </svg>
-            </span>
-            <span>Apple</span>
-          </button>
-        </div>
-
         <div class="auth-switch">
           <button type="button" onclick="setAuthMode('login')">Đăng nhập</button>
           <button type="button" onclick="setAuthMode('register')">Đăng ký</button>
@@ -201,13 +177,16 @@
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    OAuthProvider,
     onAuthStateChanged,
     signOut,
     updateProfile
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBUCPld_CUciLvnPIbf3UsB_5REfxTHEwA",
@@ -220,6 +199,7 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
   let currentMode = "login";
 
@@ -233,20 +213,6 @@
     const submit = document.getElementById("authSubmit");
     if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
     if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
-  }
-
-  window.oauthLogin = function(providerName) {
-    let provider;
-    if (providerName === "google") {
-      provider = new GoogleAuthProvider();
-    } else if (providerName === "apple") {
-      provider = new OAuthProvider("apple.com");
-    } else {
-      return;
-    }
-    signInWithPopup(auth, provider)
-      .then(() => alert("Đăng nhập th?nh c?ng"))
-      .catch(err => alert(err.message));
   }
 
   window.openAuth = function(mode) {
@@ -337,17 +303,34 @@
         if (displayName) {
           await updateProfile(cred.user, { displayName });
         }
+        await setDoc(doc(db, "users", cred.user.uid), {
+          name: profile.name,
+          birth: profile.birth,
+          gender: profile.gender,
+          nickname: profile.nickname,
+          email,
+          createdAt: Date.now()
+        });
         alert("Đăng ký th?nh c?ng");
       })
       .catch(err => alert(err.message));
   }
 
-  window.login = function() {
+  window.login = async function() {
     const email = document.getElementById("auth-email")?.value || "";
     const password = document.getElementById("auth-password")?.value || "";
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => alert("Đăng nhập th?nh c?ng"))
-      .catch(err => alert(err.message));
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      const snap = await getDoc(doc(db, "users", cred.user.uid));
+      if (snap.exists()) {
+        const data = snap.data();
+        alert(`Xin ch?o ${data.nickname || data.name || "b?n"}!`);
+      } else {
+        alert("Đăng nhập th?nh c?ng");
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
   window.submitAuth = function(event) {
