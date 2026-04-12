@@ -352,6 +352,8 @@
       if (snap.exists()) {
         const data = snap.data();
         alert(`Xin ch?o ${data.nickname || data.name || "b?n"}!`);
+        window.closeAuth();
+        setTimeout(() => updateAuthUI(auth.currentUser), 0);
       } else {
         alert("Đăng nhập th?nh c?ng");
       }
