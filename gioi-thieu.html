@@ -332,11 +332,11 @@
           email,
           createdAt: Date.now()
         });
-        alert("Đăng ký th?nh c?ng");
+        alert("Đăng ký thành công");
       })
       .catch(err => {
         if (err.code === "auth/email-already-in-use") {
-          alert("Email ?? ???c Đăng ký, h?y Đăng nhập!");
+          alert("Email đã được đăng ký, hãy Đăng nhập!");
         } else {
           alert(err.message);
         }
@@ -377,6 +377,9 @@
 
 </body>
 </html>
+
+
+
 
 
 
