@@ -119,6 +119,7 @@
         <h3 id="authTitle">Đăng nhập</h3>
         <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
         <form onsubmit="return submitAuth(event)">
+          <div id="register-fields">
           <label class="auth-label" for="name">Họ tên</label>
           <input id="name" placeholder="Họ tên">
           <label class="auth-label" for="birth">Ngày sinh</label>
@@ -131,6 +132,7 @@
           </select>
           <label class="auth-label" for="nickname">Gọi tôi là</label>
           <input id="nickname" placeholder="Gọi tôi là...">
+          </div>
           <label class="auth-label" for="auth-email">Email</label>
           <input id="auth-email" type="email" required>
           <label class="auth-label" for="auth-password">Mật khẩu</label>
@@ -190,8 +192,12 @@
     currentMode = mode === "register" ? "register" : "login";
     const title = document.getElementById("authTitle");
     const submit = document.getElementById("authSubmit");
-    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
-    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
+    const registerFields = document.getElementById("register-fields");
+    const repassword = document.getElementById("auth-repassword");
+    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (registerFields) registerFields.style.display = currentMode === "register" ? "block" : "none";
+    if (repassword) repassword.required = currentMode === "register";
   }
 
   window.openAuth = function(mode) {
@@ -211,29 +217,59 @@
     modal.setAttribute("aria-hidden", "true");
   }
 
-  function updateAuthUI(user) {
+    async function updateAuthUI(user) {
     const loginBtn = document.getElementById("authLogin");
     const registerBtn = document.getElementById("authRegister");
     const userEl = document.getElementById("authAvatar");
     const logoutBtn = document.getElementById("authMenu");
+    const greetingEl = document.getElementById("authGreeting");
+    const fullNameEl = document.getElementById("authFullName");
+
     if (user) {
       if (loginBtn) loginBtn.style.display = "none";
       if (registerBtn) registerBtn.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "inline-flex";
+
+      let nickname = "";
+      let fullName = "";
+      try {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (snap.exists()) {
+          const data = snap.data();
+          nickname = data.nickname || "";
+          fullName = data.name || "";
+        }
+      } catch (e) {}
+
+      const displayName = nickname || user.displayName || "";
+      const showName = displayName || fullName || user.email || "b?n";
+
+      if (greetingEl) {
+        greetingEl.textContent = `Xin ch?o ${showName}`;
+        greetingEl.style.display = "inline-flex";
+      }
+
       if (userEl) {
-        const email = user.email || "";
-        const initial = email ? email.trim().charAt(0).toUpperCase() : "U";
+        const initial = showName.trim().charAt(0).toUpperCase() || "U";
         userEl.textContent = initial;
-        userEl.title = email;
+        userEl.title = user.email || showName;
         userEl.style.display = "inline-flex";
       }
-      if (logoutBtn) logoutBtn.style.display = "inline-flex";
+
+      if (fullNameEl) {
+        const label = fullName || user.displayName || "";
+        fullNameEl.textContent = label ? `H? v? t?n: ${label}` : "H? v? t?n: (ch?a c?p nh?t)";
+      }
     } else {
       if (loginBtn) loginBtn.style.display = "inline-flex";
       if (registerBtn) registerBtn.style.display = "inline-flex";
-      if (userEl) userEl.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "none";
+      if (userEl) userEl.style.display = "none";
+      if (greetingEl) greetingEl.style.display = "none";
+      if (fullNameEl) fullNameEl.textContent = "";
     }
   }
+
 
   onAuthStateChanged(auth, updateAuthUI);
 

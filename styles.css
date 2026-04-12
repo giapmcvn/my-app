@@ -76,6 +76,14 @@ nav {
   justify-self: end;
 }
 
+.auth-greeting {
+  display: none;
+  font-size: 12px;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 .auth-actions button {
   background: transparent;
   color: var(--ink);
@@ -122,6 +130,12 @@ nav {
   display: none;
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
+}
+
+.auth-user-full {
+  padding: 8px 10px 6px;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .auth-menu.is-open .auth-dropdown {
