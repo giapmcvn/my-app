@@ -182,8 +182,8 @@
     const submit = document.getElementById("authSubmit");
     const registerFields = document.getElementById("register-fields");
     const repassword = document.getElementById("auth-repassword");
-    if (title) title.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
-    if (submit) submit.textContent = currentMode === "register" ? "??ng k?" : "??ng nh?p";
+    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
+    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
     if (registerFields) registerFields.style.display = currentMode === "register" ? "block" : "none";
     if (repassword) repassword.required = currentMode === "register";
   }
@@ -357,6 +357,7 @@
 
 </body>
 </html>
+
 
 
 
