@@ -82,6 +82,9 @@ nav {
   color: var(--ink);
   letter-spacing: 0.02em;
   white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .auth-actions button {

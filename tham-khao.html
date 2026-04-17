@@ -20,9 +20,11 @@
       <div class="auth-actions">
         <button type="button" id="authLogin" onclick="openAuth('login')">Đăng nhập</button>
         <button type="button" id="authRegister" onclick="openAuth('register')">Đăng ký</button>
+        <span class="auth-greeting" id="authGreeting"></span>
         <div class="auth-menu" id="authMenu">
           <button type="button" class="auth-avatar" id="authAvatar" onclick="toggleMenu()" aria-expanded="false">U</button>
           <div class="auth-dropdown" id="authDropdown">
+            <div class="auth-user-full" id="authFullName"></div>
             <button type="button" onclick="openAccount()">Tài khoản / Cài đặt</button>
             <button type="button" onclick="logout()">Đăng xuất</button>
           </div>
@@ -242,10 +244,10 @@
       } catch (e) {}
 
       const displayName = nickname || user.displayName || "";
-      const showName = displayName || fullName || user.email || "b?n";
+      const showName = displayName || fullName || user.email || "bạn";
 
       if (greetingEl) {
-        greetingEl.textContent = `Xin ch?o ${showName}`;
+        greetingEl.textContent = `Xin chào ${showName}`;
         greetingEl.style.display = "inline-flex";
       }
 
@@ -258,7 +260,7 @@
 
       if (fullNameEl) {
         const label = fullName || user.displayName || "";
-        fullNameEl.textContent = label ? `H? v? t?n: ${label}` : "H? v? t?n: (ch?a c?p nh?t)";
+        fullNameEl.textContent = label ? `Họ và tên: ${label}` : "Họ và tên: (chưa cập nhật)";
       }
     } else {
       if (loginBtn) loginBtn.style.display = "inline-flex";
@@ -345,7 +347,7 @@
       const snap = await getDoc(doc(db, "users", cred.user.uid));
       if (snap.exists()) {
         const data = snap.data();
-        alert(`Xin ch?o ${data.nickname || data.name || "b?n"}!`);
+        alert(`Xin chào ${data.nickname || data.name || "bạn"}!`);
         window.closeAuth();
         setTimeout(() => updateAuthUI(auth.currentUser), 0);
       } else {
