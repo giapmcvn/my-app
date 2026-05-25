@@ -161,7 +161,8 @@
     </footer>
   </div>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
   import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -169,23 +170,25 @@
     onAuthStateChanged,
     signOut,
     updateProfile
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
   import {
     getFirestore,
     doc,
     setDoc,
     getDoc
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+  // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyBUCPld_CUciLvnPIbf3UsB_5REfxTHEwA",
-    authDomain: "wed-vcg.firebaseapp.com",
-    projectId: "wed-vcg",
-    storageBucket: "wed-vcg.firebasestorage.app",
-    messagingSenderId: "547897720026",
-    appId: "1:547897720026:web:bcac8b3953d1ead6e679e3"
+    apiKey: "AIzaSyCygeMWanp1LjJUD9B_ls6Z6nKZE4Bw7og",
+    authDomain: "vcg-store.firebaseapp.com",
+    projectId: "vcg-store",
+    storageBucket: "vcg-store.firebasestorage.app",
+    messagingSenderId: "889034854707",
+    appId: "1:889034854707:web:07de19e5f9194ac6d12e46"
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
