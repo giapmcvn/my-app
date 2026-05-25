@@ -1,9 +1,9 @@
-﻿﻿﻿<!doctype html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VCG App Store - Giới thiệu</title>
+  <title>VCG App Store - Đăng nhập</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -18,8 +18,6 @@
         <a href="lien-he.html">Liên hệ</a>
       </nav>
       <div class="auth-actions">
-        <button type="button" id="authLogin" onclick="location.href='dang-nhap.html?mode=login'">Đăng nhập</button>
-        <button type="button" id="authRegister" onclick="location.href='dang-nhap.html?mode=register'">Đăng ký</button>
         <span class="auth-greeting" id="authGreeting"></span>
         <div class="auth-menu" id="authMenu">
           <button type="button" class="auth-avatar" id="authAvatar" onclick="toggleMenu()" aria-expanded="false">U</button>
@@ -32,120 +30,42 @@
       </div>
     </header>
 
-    <section class="section">
-      <h2>Người đứng sau hệ sinh thái bán app online</h2>
-      <div class="card">
-        <h3>VĂN CÔNG GIÁP</h3>
+    <main class="auth-page">
+      <section class="auth-copy">
+        <h1 id="authHeroTitle">Đăng nhập VCG App Store</h1>
         <p>
-          Tên thật: Văn Công Giáp. Mình là học sinh trường THCS Xuân Diệu. Mình tự học lập trình từ nhỏ
-          và ngưỡng mộ các lập trình viên nổi tiếng như "Dũng Lại Lập Trình" (Lại Tuấn Dũng, sinh năm 1998),
-          Nguyễn Nam Long (sinh năm 2012), và nhiều người khác. Hiện mình đang học Python và đã làm nhiều sản phẩm
-          như Oẳn tù tì trên terminal, game Snake, Flappy Bird, và hơn thế nữa. Ước mơ của mình là đỗ
-          Đại học Công nghệ Thông tin TP.HCM. Mình rất mong nhận được sự ủng hộ từ thầy cô và mọi người đang đọc.
+          Quản lý tài khoản, theo dõi giao dịch và lưu thông tin mua app của bạn trong một nơi gọn gàng.
         </p>
-      </div>
-    </section>
+        <div class="badge-row">
+          <span class="badge">Tài khoản an toàn</span>
+          <span class="badge">Thông tin rõ ràng</span>
+          <span class="badge">Dễ sử dụng</span>
+        </div>
+      </section>
 
-    <section class="section">
-      <h2>THÔNG TIN BÁN ỨNG DỤNG</h2>
-      <div class="card">
-        <h3>Sản phẩm</h3>
-        <p>Ứng dụng do tôi tự phát triển và sở hữu bản quyền.</p>
-
-        <h3>Hình thức mua hàng</h3>
-        <ol class="list">
-          <li>Khách hàng chuyển khoản theo thông tin được cung cấp.</li>
-          <li>Nội dung chuyển khoản bắt buộc ghi: <strong>MUAAPP + EMAIL</strong></li>
-        </ol>
-        <p>Ví dụ: <strong>MUAAPP</strong> [emailcuaban@gmail.com]</p>
-
-        <h3>Thời gian xử lý</h3>
-        <ul class="list">
-          <li>Thời gian làm việc: 8:00 – 17:00 (giờ hành chính)</li>
-          <li>Ngoài giờ: có thể xử lý chậm hơn</li>
-        </ul>
-        <p>Sau khi nhận được thanh toán hợp lệ, tôi sẽ:</p>
-        <ul class="list">
-          <li>Kiểm tra giao dịch</li>
-          <li>Cấp KEY bản quyền</li>
-          <li>Gửi KEY qua email hoặc phương thức liên hệ</li>
-        </ul>
-
-        <h3>Hệ thống KEY bản quyền</h3>
-        <ul class="list">
-          <li>Mỗi khách hàng sẽ nhận 1 KEY riêng</li>
-          <li>KEY dùng để kích hoạt ứng dụng</li>
-          <li>Không chia sẻ KEY cho người khác</li>
-        </ul>
-
-        <h3>Quy định quan trọng</h3>
-        <ul class="list">
-          <li>Không xử lý các giao dịch không ghi đúng nội dung</li>
-          <li>Không hoàn tiền sau khi đã cấp KEY</li>
-          <li>Khách hàng tự chịu trách nhiệm khi chia sẻ KEY</li>
-          <li>Khách hàng vui lòng chụp lại màn hình khi chuyển khoản xong và gửi vào Zalo trong phần [LIÊN HỆ]</li>
-        </ul>
-
-        <h3>Cam kết</h3>
-        <ul class="list">
-          <li>Sản phẩm do chính tôi phát triển</li>
-          <li>Cung cấp KEY đầy đủ sau khi nhận thanh toán</li>
-          <li>Không có hành vi lừa đảo hoặc chiếm đoạt tài sản</li>
-        </ul>
-        <p>
-          Trong trường hợp không thực hiện đúng cam kết,
-          khách hàng có quyền khiếu nại theo quy định pháp luật.
-        </p>
-
-        <h3>Thông tin liên hệ</h3>
-        <ul class="list">
-          <li>Tên: Văn Công Giáp</li>
-          <li>Email: vconggiap@gmail.com</li>
-          <li>Khu vực: Tỉnh Đồng Tháp / Thành phố Mỹ Tho</li>
-        </ul>
-
-        <p>Cảm ơn bạn đã tin tưởng và ủng hộ!</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Cộng đồng văn minh</h2>
-      <div class="card">
-        <p>
-          Ở đây mọi người đều có thể chia sẻ các app, ứng dụng web của mình tự làm và cũng có thể mua bán trên đó.
-          Mọi người đều có quyền lên tiếng vì một cộng đồng văn minh thân thiện. Và mọi người còn có thể đăng bán
-          trên trang web của người thành lập (VAN CÔNG GIÁP). Chỉ cần tham gia Discord:
-          <a href="https://discord.gg/Vu7mAcdP" target="_blank" rel="noopener noreferrer">https://discord.gg/Vu7mAcdP</a>.
-        </p>
-      </div>
-    </section>
-    
-    <div class="auth-modal" id="authModal" aria-hidden="true">
-      <div class="auth-backdrop" onclick="closeAuth()"></div>
-      <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <button class="auth-close" type="button" onclick="closeAuth()">×</button>
+      <section class="auth-panel auth-page-panel" aria-labelledby="authTitle">
         <h3 id="authTitle">Đăng nhập</h3>
         <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
         <form onsubmit="return submitAuth(event)">
           <div id="register-fields">
-          <label class="auth-label" for="name">Họ tên</label>
-          <input id="name" placeholder="Họ tên">
-          <label class="auth-label" for="birth">Ngày sinh</label>
-          <input id="birth" type="date">
-          <label class="auth-label" for="gender">Giới tính</label>
-          <select id="gender">
-            <option value="">Chọn giới tính</option>
-            <option>Nam</option>
-            <option>Nữ</option>
-          </select>
-          <label class="auth-label" for="nickname">Gọi tôi là</label>
-          <input id="nickname" placeholder="Gọi tôi là...">
+            <label class="auth-label" for="name">Họ tên</label>
+            <input id="name" placeholder="Họ tên">
+            <label class="auth-label" for="birth">Ngày sinh</label>
+            <input id="birth" type="date">
+            <label class="auth-label" for="gender">Giới tính</label>
+            <select id="gender">
+              <option value="">Chọn giới tính</option>
+              <option>Nam</option>
+              <option>Nữ</option>
+            </select>
+            <label class="auth-label" for="nickname">Gọi tôi là</label>
+            <input id="nickname" placeholder="Gọi tôi là...">
           </div>
           <label class="auth-label" for="auth-email">Email</label>
           <input id="auth-email" type="email" required>
           <label class="auth-label" for="auth-password">Mật khẩu</label>
           <input id="auth-password" type="password" required>
-          <label class="auth-label" for="auth-repassword">Nhập lại mật khẩu</label>
+          <label class="auth-label" for="auth-repassword" id="auth-repassword-label">Nhập lại mật khẩu</label>
           <input id="auth-repassword" type="password">
           <button class="auth-submit" type="submit" id="authSubmit">Đăng nhập</button>
         </form>
@@ -153,14 +73,16 @@
           <button type="button" onclick="setAuthMode('login')">Đăng nhập</button>
           <button type="button" onclick="setAuthMode('register')">Đăng ký</button>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
+
     <footer>
       <span>© 2026 VCG App Store</span>
       <span>http://VCG.com</span>
     </footer>
   </div>
-    <script type="module">
+
+  <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
     getAuth,
@@ -198,44 +120,37 @@
 
   window.setAuthMode = function(mode) {
     currentMode = mode === "register" ? "register" : "login";
+    const isRegister = currentMode === "register";
     const title = document.getElementById("authTitle");
+    const heroTitle = document.getElementById("authHeroTitle");
     const submit = document.getElementById("authSubmit");
     const registerFields = document.getElementById("register-fields");
     const repassword = document.getElementById("auth-repassword");
-    if (title) title.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
-    if (submit) submit.textContent = currentMode === "register" ? "Đăng ký" : "Đăng nhập";
-    if (registerFields) registerFields.style.display = currentMode === "register" ? "block" : "none";
-    if (repassword) repassword.required = currentMode === "register";
+    const repasswordLabel = document.getElementById("auth-repassword-label");
+
+    document.title = `VCG App Store - ${isRegister ? "Đăng ký" : "Đăng nhập"}`;
+    if (title) title.textContent = isRegister ? "Đăng ký" : "Đăng nhập";
+    if (heroTitle) heroTitle.textContent = isRegister ? "Tạo tài khoản VCG App Store" : "Đăng nhập VCG App Store";
+    if (submit) submit.textContent = isRegister ? "Đăng ký" : "Đăng nhập";
+    if (registerFields) registerFields.style.display = isRegister ? "block" : "none";
+    if (repassword) {
+      repassword.required = isRegister;
+      repassword.style.display = isRegister ? "block" : "none";
+    }
+    if (repasswordLabel) repasswordLabel.style.display = isRegister ? "block" : "none";
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("mode", currentMode);
+    history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
   }
 
-  window.openAuth = function(mode) {
-    const modal = document.getElementById("authModal");
-    if (!modal) return;
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    window.setAuthMode(mode || "login");
-    const email = document.getElementById("auth-email");
-    if (email) email.focus();
-  }
-
-  window.closeAuth = function() {
-    const modal = document.getElementById("authModal");
-    if (!modal) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-  }
-
-    async function updateAuthUI(user) {
-    const loginBtn = document.getElementById("authLogin");
-    const registerBtn = document.getElementById("authRegister");
+  async function updateAuthUI(user) {
     const userEl = document.getElementById("authAvatar");
     const logoutBtn = document.getElementById("authMenu");
     const greetingEl = document.getElementById("authGreeting");
     const fullNameEl = document.getElementById("authFullName");
 
     if (user) {
-      if (loginBtn) loginBtn.style.display = "none";
-      if (registerBtn) registerBtn.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "inline-flex";
 
       let nickname = "";
@@ -269,15 +184,12 @@
         fullNameEl.textContent = label ? `Họ và tên: ${label}` : "Họ và tên: (chưa cập nhật)";
       }
     } else {
-      if (loginBtn) loginBtn.style.display = "inline-flex";
-      if (registerBtn) registerBtn.style.display = "inline-flex";
       if (logoutBtn) logoutBtn.style.display = "none";
       if (userEl) userEl.style.display = "none";
       if (greetingEl) greetingEl.style.display = "none";
       if (fullNameEl) fullNameEl.textContent = "";
     }
   }
-
 
   onAuthStateChanged(auth, updateAuthUI);
 
@@ -290,7 +202,7 @@
   }
 
   window.openAccount = function() {
-    alert("T?nh n?ng t?i kho?n/c?i ??t ?ang ???c c?p nh?t.");
+    alert("Tính năng tài khoản/cài đặt đang được cập nhật.");
   }
 
   document.addEventListener("click", (e) => {
@@ -316,7 +228,7 @@
     const password = document.getElementById("auth-password")?.value || "";
     const repassword = document.getElementById("auth-repassword")?.value || "";
     if (password !== repassword) {
-      alert("Mật khẩu nh?p l?i kh?ng kh?p");
+      alert("Mật khẩu nhập lại không khớp");
       return;
     }
     const profile = collectProfile();
@@ -335,10 +247,12 @@
           createdAt: Date.now()
         });
         alert("Đăng ký thành công");
+        window.location.href = "index.html";
       })
       .catch(err => {
         if (err.code === "auth/email-already-in-use") {
           alert("Email đã được đăng ký, hãy Đăng nhập!");
+          window.setAuthMode("login");
         } else {
           alert(err.message);
         }
@@ -354,17 +268,14 @@
       if (snap.exists()) {
         const data = snap.data();
         alert(`Xin chào ${data.nickname || data.name || "bạn"}!`);
-        window.closeAuth();
-        setTimeout(() => updateAuthUI(auth.currentUser), 0);
       } else {
-        alert("Đăng nhập th?nh c?ng");
+        alert("Đăng nhập thành công");
       }
+      window.location.href = "index.html";
     } catch (err) {
       alert(err.message);
     }
   }
-
-  window.setAuthMode("login");
 
   window.submitAuth = function(event) {
     event.preventDefault();
@@ -375,18 +286,10 @@
     }
     return false;
   }
-  </script>
 
+  const params = new URLSearchParams(window.location.search);
+  window.setAuthMode(params.get("mode") || "login");
+  document.getElementById("auth-email")?.focus();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
