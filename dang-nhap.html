@@ -7,42 +7,8 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">VCG App Store</div>
-      <nav>
-        <a href="index.html">Trang chủ</a>
-        <a href="gioi-thieu.html">Giới thiệu</a>
-        <a href="tham-khao.html">Tham khảo</a>
-        <a href="tai-nguyen.html">Tài nguyên</a>
-        <a href="lien-he.html">Liên hệ</a>
-      </nav>
-      <div class="auth-actions">
-        <span class="auth-greeting" id="authGreeting"></span>
-        <div class="auth-menu" id="authMenu">
-          <button type="button" class="auth-avatar" id="authAvatar" onclick="toggleMenu()" aria-expanded="false">U</button>
-          <div class="auth-dropdown" id="authDropdown">
-            <div class="auth-user-full" id="authFullName"></div>
-            <button type="button" onclick="openAccount()">Tài khoản / Cài đặt</button>
-            <button type="button" onclick="logout()">Đăng xuất</button>
-          </div>
-        </div>
-      </div>
-    </header>
-
+  <div class="auth-page-wrap">
     <main class="auth-page">
-      <section class="auth-copy">
-        <h1 id="authHeroTitle">Đăng nhập VCG App Store</h1>
-        <p>
-          Quản lý tài khoản, theo dõi giao dịch và lưu thông tin mua app của bạn trong một nơi gọn gàng.
-        </p>
-        <div class="badge-row">
-          <span class="badge">Tài khoản an toàn</span>
-          <span class="badge">Thông tin rõ ràng</span>
-          <span class="badge">Dễ sử dụng</span>
-        </div>
-      </section>
-
       <section class="auth-panel auth-page-panel" aria-labelledby="authTitle">
         <h3 id="authTitle">Đăng nhập</h3>
         <p class="auth-sub">Vui lòng nhập email và mật khẩu của bạn.</p>
@@ -76,10 +42,6 @@
       </section>
     </main>
 
-    <footer>
-      <span>© 2026 VCG App Store</span>
-      <span>http://VCG.com</span>
-    </footer>
   </div>
 
   <script type="module">
@@ -122,7 +84,6 @@
     currentMode = mode === "register" ? "register" : "login";
     const isRegister = currentMode === "register";
     const title = document.getElementById("authTitle");
-    const heroTitle = document.getElementById("authHeroTitle");
     const submit = document.getElementById("authSubmit");
     const registerFields = document.getElementById("register-fields");
     const repassword = document.getElementById("auth-repassword");
@@ -130,7 +91,6 @@
 
     document.title = `VCG App Store - ${isRegister ? "Đăng ký" : "Đăng nhập"}`;
     if (title) title.textContent = isRegister ? "Đăng ký" : "Đăng nhập";
-    if (heroTitle) heroTitle.textContent = isRegister ? "Tạo tài khoản VCG App Store" : "Đăng nhập VCG App Store";
     if (submit) submit.textContent = isRegister ? "Đăng ký" : "Đăng nhập";
     if (registerFields) registerFields.style.display = isRegister ? "block" : "none";
     if (repassword) {
