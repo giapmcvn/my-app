@@ -15,17 +15,47 @@
   const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
+  function getSignUpErrorMessage(error) {
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        return "Email này đã được đăng ký. Hãy đăng nhập hoặc dùng email khác.";
+      case "auth/invalid-email":
+        return "Email không hợp lệ. Vui lòng kiểm tra lại.";
+      case "auth/missing-email":
+        return "Vui lòng nhập email.";
+      case "auth/missing-password":
+        return "Vui lòng nhập mật khẩu.";
+      case "auth/weak-password":
+        return "Mật khẩu quá yếu. Hãy dùng ít nhất 6 ký tự.";
+      case "auth/network-request-failed":
+        return "Không thể kết nối Firebase. Vui lòng kiểm tra mạng rồi thử lại.";
+      case "auth/operation-not-allowed":
+        return "Firebase chưa bật đăng ký bằng email/mật khẩu.";
+      default:
+        return error.message || "Đã có lỗi xảy ra. Vui lòng thử lại.";
+    }
+  }
+
   function signUpWithEmail(email, password) {
+    if (!email.trim()) {
+      alert("Vui lòng nhập email.");
+      return Promise.reject(new Error("Missing email"));
+    }
+
+    if (!password) {
+      alert("Vui lòng nhập mật khẩu.");
+      return Promise.reject(new Error("Missing password"));
+    }
+
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+        alert("Tạo tài khoản thành công!");
         return user;
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(`${errorCode}: ${errorMessage}`);
+        alert(getSignUpErrorMessage(error));
         throw error;
       });
   }
