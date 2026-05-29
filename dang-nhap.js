@@ -52,6 +52,7 @@
         // Signed up
         const user = userCredential.user;
         alert("Tạo tài khoản thành công!");
+        window.location.href = "grand.html";
         return user;
       })
       .catch((error) => {
