@@ -7,5 +7,5 @@
     intro.addEventListener('transitionend', () => intro.remove(), { once: true });
   };
 
-  window.setTimeout(dismiss, 2300);
+  window.setTimeout(dismiss, 2700);
 })();
