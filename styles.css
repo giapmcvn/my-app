@@ -60,19 +60,24 @@ body::before {
   background: linear-gradient(90deg, transparent, var(--brand-2), var(--brand), transparent);
   box-shadow: 0 0 18px rgba(227, 162, 75, 0.65);
   will-change: transform, opacity;
-  animation: intro-line 2.6s cubic-bezier(.22, .61, .36, 1) both;
+  animation: intro-line 3.15s cubic-bezier(.22, .61, .36, 1) both;
 }
 .site-intro::before { transform: translateY(-72px); }
 .site-intro::after { transform: translateY(72px); animation-name: intro-line-bottom; animation-delay: 0.12s; }
 .site-intro__name {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
   margin: 0;
   font-size: clamp(46px, 10vw, 132px);
   font-weight: 900;
-  letter-spacing: 0.24em;
-  text-indent: 0.24em;
+  line-height: 1;
   text-transform: uppercase;
+}
+.site-intro__letter {
+  display: inline-block;
+  color: transparent;
   background: linear-gradient(110deg, #f8f2e8 15%, var(--brand) 47%, var(--brand-2) 63%, #f8f2e8 86%);
   background-size: 220% auto;
   -webkit-background-clip: text;
@@ -80,15 +85,17 @@ body::before {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 45px rgba(227, 162, 75, 0.25);
   will-change: transform, opacity;
-  animation: intro-name 2.5s cubic-bezier(.22, .61, .36, 1) both, intro-shine 2.8s ease-out both;
+  animation: intro-letter 2.85s cubic-bezier(.22, .61, .36, 1) calc(var(--i) * 0.075s) both, intro-shine 2.4s ease-out calc(var(--i) * 0.075s) both;
 }
-.site-intro--hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-@keyframes intro-name {
-  0% { opacity: 0; transform: scale(0.9) translateY(14px); }
-  65% { opacity: 1; transform: scale(1.012) translateY(0); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-@keyframes intro-shine { from { background-position: 160% center; } to { background-position: -60% center; } }
+.site-intro__space { width: 0.35em; }.site-intro--hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+@keyframes intro-letter {
+  0% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.45); }
+  34% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1.06); }
+  52% { transform: translate(-4px, 5px) rotate(-4deg) scale(0.98); }
+  68% { transform: translate(3px, -4px) rotate(3deg) scale(1.02); }
+  82% { transform: translate(-1px, 1px) rotate(-1deg) scale(1); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
+}@keyframes intro-shine { from { background-position: 160% center; } to { background-position: -60% center; } }
 @keyframes intro-line {
   0% { opacity: 0; transform: scaleX(0) translateY(-72px); }
   45%, 100% { opacity: 1; transform: scaleX(1) translateY(-72px); }
